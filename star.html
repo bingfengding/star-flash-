@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+		window.onload = function () {
+			document.body.setAttribute("style","background-color:black");
+			var num=0;
+			function oRandom() {
+				var imgObj = document.createElement("img");
+				imgObj.setAttribute("src","./images/002.png");
+				var size = Math.random()*60+20;
+				var oLeft = Math.random()*document.body.clientWidth ;
+				var oHeight = Math.random()*document.body.scrollHeight ;
+				imgObj.setAttribute("width",size+"px");
+				imgObj.setAttribute("style","position: absolute;left:"+oLeft+"px"+";top:"+oHeight+"px");
+				document.body.appendChild(imgObj);
+			}
+			setInterval(function () {
+				oRandom();
+				num++;
+				var firstNode=  document.body.childNodes[0];
+				if(num>=30){
+					document.body.removeChild(firstNode);
+
+				}
+			},1000);
+
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
