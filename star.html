@@ -5,7 +5,7 @@
 	<title>Title</title>
 	<style>
 		body{
-			height: 600px;
+			height: 700px;
 		}
 	</style>
 
@@ -14,21 +14,25 @@
 
 <script>
 	document.body.setAttribute("style","background-color:black");
+	function getRandom(min,max) {
+		var random = Math.random()*(max-min)+min;
+		random = Math.floor(random);
+		return random;
+	}
 	function addObj(xCoor,yCoor) {
 		var imgObj = document.createElement("img");
 		imgObj.setAttribute("src","./images/002.png");
-		var size = Math.random()*60+20;
-		var oLeft = xCoor ? xCoor: Math.random()*document.body.clientWidth ;
-		var oTop = yCoor ? yCoor: Math.random()*document.body.clientHeight ;
+		var size = getRandom(20,80);
+		var oLeft = (xCoor+1)?xCoor:getRandom(0,window.innerWidth);
+		var oTop = (yCoor+1)?yCoor:getRandom(0,window.innerHeight);
 		imgObj.setAttribute("width",size+"px");
 		imgObj.setAttribute("style","position: absolute;left:"+oLeft+"px"+";top:"+oTop+"px");
+		imgObj.setAttribute("onclick","removeImg(this)");
 		document.body.appendChild(imgObj);
 	}
 	setInterval(function () {
 		var len = document.getElementsByTagName("img").length;
-
 		var firstNode=  document.body.childNodes;
-		console.log(len);
 		if(len>=30){
 			for(var i = 0;i< (len-30);i++){
 				document.body.removeChild(firstNode[i]);
@@ -40,7 +44,13 @@
 		var x = e.clientX;
 		var y= e.clientY;
 		addObj(x,y);
+		console.log(1);
 	}
+	function removeImg(obj) {
+		document.body.removeChild(obj);
+	}
+	console.log(innerWidth,document.body.clientWidth,document.body.offsetWidth,document.body.scrollWidth);
+	console.log(innerHeight,document.body.clientHeight,document.body.offsetHeight,document.body.scrollHeight);
 </script>
 </body>
 </html>
